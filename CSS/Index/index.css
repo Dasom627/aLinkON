@@ -1,0 +1,120 @@
+body { background: #fffbe6 !important; }
+
+:root{
+  --bg:#fafafa;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --brand:#6c7cff; /* LinkON 임시 포인트색 */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+/* 레이아웃 */
+.auth-layout{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns: 1.1fr 1fr;
+  place-items:center;
+  gap:40px;
+  padding:32px;
+}
+@media (max-width: 900px){
+  .auth-layout{grid-template-columns:1fr; padding:24px}
+  .visual{display:none}
+}
+
+/* 왼쪽 비주얼 */
+.visual-card{
+  position:relative;
+  width:min(520px, 90vw);
+  aspect-ratio: 4 / 5;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  background:#ddd;
+}
+.visual-card img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.slogan{
+  position:absolute; left:16px; bottom:16px;
+  background:rgba(255,255,255,.86);
+  padding:14px 16px; border-radius:14px;
+  backdrop-filter:saturate(140%) blur(2px);
+}
+.slogan h1{margin:0 0 4px; font-size:20px}
+.slogan p{margin:0; color:var(--muted); font-size:14px}
+
+/* 오른쪽 카드 */
+.auth-card{width:100%; max-width:360px}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:28px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
+}
+.card + .card{margin-top:12px}
+.card.secondary{text-align:center}
+
+.logo{
+  margin:0 0 18px;
+  text-align:center;
+  letter-spacing:.5px;
+  font-weight:800;
+  font-size:28px;
+}
+
+/* 폼 */
+.form{display:grid; gap:12px; margin-bottom:10px}
+input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:#fff;
+  outline:none;
+}
+input:focus{border-color:var(--brand); box-shadow:0 0 0 3px rgba(108,124,255,.18)}
+
+.btn{
+  width:100%; padding:12px 14px;
+  border-radius:10px; border:1px solid var(--border);
+  cursor:pointer; font-weight:600; background:#fff;
+}
+.btn.primary{background:var(--brand); color:#fff; border-color:var(--brand)}
+.btn.primary:hover{filter:brightness(.97)}
+.btn.outline:hover{background:#f3f4f6}
+
+.divider{
+  display:flex; align-items:center; gap:12px;
+  margin:14px 0;
+  color:var(--muted); font-size:14px;
+}
+.divider::before,.divider::after{
+  content:""; height:1px; flex:1; background:var(--border);
+}
+
+/* 링크 & 푸터 */
+.link{color:var(--brand); text-decoration:none}
+.link:hover{text-decoration:underline}
+.link.subtle{display:block; text-align:center; margin-top:10px; color:var(--muted)}
+.meta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:18px 0 8px}
+.meta a{color:var(--muted); text-decoration:none; font-size:12px}
+.meta a:hover{text-decoration:underline}
+.footer{color:var(--muted); text-align:center}
+
+/* 접근성용 숨김 라벨 */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
