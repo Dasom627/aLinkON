@@ -10,47 +10,50 @@
 <body>
   <main class="auth-layout"> <!--메인 콘텐츠 영역-->
     <!-- 왼쪽: 서비스 비주얼/슬로건 -->
-    <section class="visual"> <!--비주얼 영역-->
+    <section class="visual"> <!--visual 영역-->
       <div class="visual-card"> <!--그 중에서 카드 영역-->
-        <img src="images/hero.jpg" alt="LinkON preview" /> <!--이미지 사진-->
-        <div class="slogan">
-          <h1>LinkON</h1>
-          <p>자동 이력서 · 맞춤 추천 · 성장 로드맵</p>
+        <img src="/Images/IndexImage/lightbulb.png" alt="전구 이미지" /> <!--카드 영역에 이미지 사진-->
+        <div class="slogan"> <!--그리고 슬로건 사진-->
+          <h1>LinkON</h1> <!--슬로건 사진의 제목-->
+          <p>자동 이력서 · 맞춤 추천 · 성장 로드맵</p> <!--슬로건 사진의 텍스트-->
         </div>
       </div>
     </section>
 
     <!-- 오른쪽: 로그인 카드 -->
-    <section class="auth-card">
-      <div class="card">
-        <h2 class="logo">LinkON</h2>
+    <section class="auth-card"> <!--auth-card 영역-->
+      <div class="card"> <!--그 중에서 카드 영역-->
+        <h2 class="logo">LinkON</h2> <!--로고 부분-->
 
-        <form class="form" action="#" method="post">
-          <label class="sr-only" for="email">이메일 또는 전화번호</label>
+        <form class="form" action="#" method="post"> <!--폼이라는 구역을 정의한다(action은 데이터를 보낼 목적지인데 아직 정의하지 않았다)-->
+          <label class="sr-only" for="email">이메일 또는 전화번호</label> <!--입력창에 무엇을 입력해야할지 알려준다-->
           <input id="email" name="email" type="text" placeholder="이메일 또는 전화번호" autocomplete="username" required />
+          <!--js로 전송하기 위한 id명, 서버 전송 시 변수명, 안내문, 자동완성 힌트, 비어 있으면 제출 불가로 경고창이 뜨는 것들이 있다-->
 
-          <label class="sr-only" for="password">비밀번호</label>
+          <label class="sr-only" for="password">비밀번호</label> <!--입력창에 무엇을 입력해야할지 알려준다-->
           <input id="password" name="password" type="password" placeholder="비밀번호" autocomplete="current-password" required />
+          <!--js로 전송하기 위한 id명, 서버 전송 시 변수명, 안내문, 자동완성 힌트, 비어 있으면 제출 불가로 경고창이 뜨는 것들이 있다-->
 
-          <button type="submit" class="btn primary">로그인</button>
+          <button type="submit" class="btn primary">로그인</button> <!--데이터를 서버로 전송하고, 로그인 글자가 들어간 버튼이다-->
         </form>
 
-        <div class="divider"><span>또는</span></div>
+        <div class="divider"><span>또는</span></div> <!--"또는" 이라고 작은 글자가 들어간다"-->
 
-        <button class="btn outline" type="button">Google로 로그인</button>
+        <button class="btn outline" type="button">Google로 로그인</button> <!--구글로 로그인을 할 수 있게하는 버튼이다-->
 
-        <a class="link subtle" href="#">비밀번호를 잊으셨나요?</a>
+        <a class="link subtle" href="#">비밀번호를 잊으셨나요?</a> <!--글자를 누르면 하이퍼링크로 연결된다 하이퍼링크의 현재 주소는 비어있다-->
       </div>
 
-      <div class="card secondary">
-        <p>계정이 없으신가요? <a class="link" href="signup.html">가입하기</a></p>
+      <div class="card secondary"> <!--card secondary구역이다-->
+        <p>계정이 없으신가요? <a class="link" href="/HTML/Register/register1.html">가입하기</a></p> <!--글자 "가입하기를 누르면 하이퍼링크로 들어가진다"-->
       </div>
 
-      <footer class="footer">
-        <nav class="meta">
+      <footer class="footer"> <!--끝에 부분의 공간을 만든다-->
+        <nav class="meta"> <!--내비게이션을 만든다-->
           <a href="#">소개</a><a href="#">도움말</a><a href="#">개인정보처리방침</a><a href="#">약관</a>
+          <!--내비게이션의 글자들이다 글자를 누르면 하이퍼링크로 연결이 된다-->
         </nav>
-        <small>© 2025 LinkON</small>
+        <small>© 2025 LinkON</small> <!--더 작게 글자 표시-->
       </footer>
     </section>
   </main>
