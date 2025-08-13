@@ -1,49 +1,59 @@
-body { background: #fffbe6 !important; }
+body { background: #fffbe6 !important; } /*배경을 강제로 노랑색으로 한다 우선순위가 가장 우선이다*/
 
 :root{
-  --bg:#fafafa;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
-  --border:#e5e7eb;
-  --brand:#6c7cff; /* LinkON 임시 포인트색 */
+  --bg:#fafafa; /*배경 색깔*/
+  --card:#ffffff; /*카드 색깔*/
+  --text:#111827; /*기본 텍스트 색깔*/
+  --muted:#6b7280; /*흐린 텍스트 색깔*/
+  --border:#e5e7eb; /*경계선 색*/
+  --brand:#6c7cff; /*브랜드 포인트 색*/
 }
 
-*{box-sizing:border-box}
+*{box-sizing:border-box} /*박스사이즈를 패딩과 경계선까지 포함한 border-box로 지정한다*/
 html,body{height:100%}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
+body{ /*body 내용*/
+  margin:0; /*바디의 여백을 제거*/
+  background:var(--bg); /*배경의 배경색을 지정*/
+  color:var(--text); /*글자의 글자색을 지정*/
   font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  /*폰트 사이즈는 기본은 16px, 줄 간격은 1.5, 각 운영체제 기본 UI폰트를 사용하고 없다면 뒤에 나오는 폰트들로 쓴다*/
 }
 
-/* 레이아웃 */
-.auth-layout{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns: 1.1fr 1fr;
-  place-items:center;
-  gap:40px;
-  padding:32px;
+/* 레이아웃(전체 화면을 말한다)*/
+.auth-layout{ /*auth-layout 클래스*/
+  min-height:100dvh; /*최소 높이를 화면 전체 높이(100%)로 설정*/
+  display:grid; /*그리드 컨테이너로 만든다*/
+  grid-template-columns: 1.1fr 1fr; /*가로로 1.1대 1비율로 한다*/
+  place-items:center; /*그리드 아이템들을 모두 중앙 정렬*/
+  gap:clamp(16px, 3vw, 32px);
+  /*그리드 아이템 사이 간격을 최소 16px, 화면 너비의 3%를 선호, 최대 32px까지 반응형으로 조절*/
+  padding: clamp(12px, 3vw, 24px);
+  /*패딩을 최소 12px, 화면 너비의 3%를 선호, 최대 24px까지 반응형으로 조절*/
 }
-@media (max-width: 900px){
-  .auth-layout{grid-template-columns:1fr; padding:24px}
-  .visual{display:none}
+@media (max-width: 900px){ /*화면의 가로 너비가 900px 이하일 때 적용된다*/
+  .auth-layout{grid-template-columns:1fr;} /*그리드 템플릿의 비율로 1로하고, 패딩은 24px로 한다*/
+  .visual{display:none} /*비주얼은 보여지지 않는다*/
 }
 
 /* 왼쪽 비주얼 */
-.visual-card{
-  position:relative;
-  width:min(520px, 90vw);
-  aspect-ratio: 4 / 5;
-  border-radius:28px;
-  overflow:hidden;
+.visual-card{ /*비주얼 카드부분이다*/
+  height: min(76dvh, 680px); /*화면이 낮을수록 세로를 줄여서 한 화면 안에 들어오게한다*/
+  max-height: 82dvh; /*너무 길어지지 않도록 최대 세로 제한*/
+  position:relative; /*자식의 absolute 기준점이 된다*/
+  width:min(620px, 46vw);
+  /*넓은 화면에서는 620px로 한다 좁은 화면에서는 46%로 줄인다*/
+  aspect-ratio: 4 / 5; /*가로세로 비율을 4:5로 한다*/
+  border-radius:28px; /*카드 모서리를 28px만큼 둥글게 만든다*/
+  overflow:hidden; /*카드 내용이 카드 경계선을 넘어가면 잘라낸다*/
   box-shadow: 0 20px 40px rgba(0,0,0,.12);
-  background:#ddd;
+  /*세로로 20px 아래 그림자로하고 흐림 정도는 40px로 검정색, 투명도는 12%로 한다*/
+  background:#ddd; /*이미지가 없거나 로딩 전 배경색*/
 }
-.visual-card img{
-  width:100%; height:100%; object-fit:cover; display:block;
+.visual-card img{ /*전구 이미지에 관해 사진 조정*/
+  width:100%; /*부모(.visual-card)의 너비에 맞춰 이미지 가로 크기 채움*/
+  height:100%; /*부모 높이에 맞춰 이미지 세로 크기 채움*/
+  object-fit:cover; /*비율은 유지하면서 컨테이너를 꽉 채우고, 넘치는 부분은 잘라냄*/
+  display:block; /*이미지 아래 생길 수 있는 여백 제거(인라인 요소 특성 제거)*/
 }
 .slogan{
   position:absolute; left:16px; bottom:16px;
