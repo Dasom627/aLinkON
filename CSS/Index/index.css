@@ -121,13 +121,19 @@ input:focus{ /*사용자가 입력창을 클릭했을때*/
 .btn.outline:hover{background:#f3f4f6}
 /*버튼 색깔을 연한 회색으로 바꾼다*/
 
-.divider{
-  display:flex; align-items:center; gap:12px;
-  margin:14px 0;
-  color:var(--muted); font-size:14px;
+.divider{ /*경계선*/
+  display:flex; /*플렉스 박스로 한다*/
+  align-items:center; /*가운데 정렬한다*/
+  gap:12px; /*갭은 12px정도로 둔다*/
+  margin:14px 0; /*위아래 14px, 양옆 0px정도 공백을 둔다*/
+  color:var(--muted); /*색상은 원래 지정한 회색*/
+  font-size:14px; /*폰트사이즈는 14px아다*/
 }
-.divider::before,.divider::after{
-  content:""; height:1px; flex:1; background:var(--border);
+.divider::before,.divider::after{ /*경계선 앞 뒤를 가르킨다*/
+  content:""; /*경계선 앞뒤로 코드를 만든다*/
+  height:1px; /*높이는 1px이다*/
+  flex:1; /*플렉스는 1로하여 좌우를 도 같이 나누어 가진다*/
+  background:var(--border); /*경계선 배경색을 지정한다*/
 }
 
 /* 링크 & 푸터 */
