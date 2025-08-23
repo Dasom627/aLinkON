@@ -1,0 +1,20 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# SQLite DB
+linkon.db
+*.db
+*.db-shm
+*.db-wal
+
+# 환경변수
+.env
+.env.*
+
+# 기타
+dist/
+build/
+.vscode/
+.DS_Store
+Thumbs.db
