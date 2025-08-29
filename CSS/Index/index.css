@@ -138,15 +138,29 @@ input:focus{ /*사용자가 입력창을 클릭했을때*/
 
 /* 링크 & 푸터 */
 .link{color:var(--brand); text-decoration:none}
+/*색깔은 brand에 지정된 색으로 하고, 기본 상태일 때 밑줄을 제거한다*/
 .link:hover{text-decoration:underline}
+/*마우스를 올렸을 때 글자 밑에 줄이 생긴다*/
 .link.subtle{display:block; text-align:center; margin-top:10px; color:var(--muted)}
+/*'비밀번호를 잊으셨나요'라는 버튼이 있는 곳에 블록 형식으로 글자를 10px 가운데 정렬로 하고 색은 흐린 색으로 한다*/
 .meta{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:18px 0 8px}
+/*플렉스 박스로 만들고, 줄 바꿈을 허용하고, 항목 간견은 12px로 하고 가운데 정렬을 하고, 마진은 위 아래로 공간이 있게 한다*/
 .meta a{color:var(--muted); text-decoration:none; font-size:12px}
+/*메타의 모든 태그에 흐린 텍스트의 색깔로 적용하고, 글자 밑에 줄을 제거하고, 12px의 사이즈를 말한다*/
 .meta a:hover{text-decoration:underline}
+/*메타의 태그가 적용된거에 마우스를 올리면 밑줄을 표시한다*/
 .footer{color:var(--muted); text-align:center}
+/*색깔은 회색에 글자는 가운데 정렬로 한다*/
 
 /* 접근성용 숨김 라벨 */
 .sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+  position:absolute; /*입력공간에 보이지 않는 별도의 형태로 존재한다*/
+  width:1px; /*가로 크기 1px*/
+  height:1px; /*세로 크기 1px*/
+  padding:0; 
+  margin:-1px; 
+  overflow:hidden; 
+  clip:rect(0 0 0 0); 
+  white-space:nowrap; 
+  border:0;
 }
