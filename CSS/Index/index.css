@@ -153,14 +153,14 @@ input:focus{ /*사용자가 입력창을 클릭했을때*/
 /*색깔은 회색에 글자는 가운데 정렬로 한다*/
 
 /* 접근성용 숨김 라벨 */
-.sr-only{
+.sr-only{ /*비밀번호를 입력하세요가 보이고 누르면 글자를 입력할 수 있는 창*/
   position:absolute; /*입력공간에 보이지 않는 별도의 형태로 존재한다*/
   width:1px; /*가로 크기 1px*/
   height:1px; /*세로 크기 1px*/
-  padding:0; 
-  margin:-1px; 
-  overflow:hidden; 
-  clip:rect(0 0 0 0); 
-  white-space:nowrap; 
-  border:0;
+  padding:0; /*패딩을 없앤다*/
+  margin:-1px; /*마진은 1px로 한다*/
+  overflow:hidden; /*내용 영역을 벗어나면 숨긴다*/
+  clip:rect(0 0 0 0); /*잘라내서 표시할 영역을 안보이게 한다*/
+  white-space:nowrap; /*보이지 않아도 줄바꿈을 없앤다*/
+  border:0; /*테두리는 없음*/
 }

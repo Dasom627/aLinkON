@@ -34,7 +34,7 @@ const checkDupBtn  = document.getElementById("checkDupBtn");
 const nickError    = document.getElementById("nickError");
 const toStep2      = document.getElementById("toStep2");
 
-const reNick = /^[a-z0-9._-]{3,20}$/; // 영문 소문자/숫자/.-_ 3~20자
+const reNick = /^[A-Za-z0-9._-]{3,20}$/; // 영문 소문자/숫자/.-_ 3~20자
 let nicknameOK = false;
 
 function resetNickState(){
@@ -55,7 +55,7 @@ async function checkNickname(){
 
   // 1) 형식 체크
   if (!reNick.test(val)){
-    if (nickError) nickError.textContent = "형식이 올바르지 않습니다. (영소문자/숫자/.-_ 3~20자)";
+    if (nickError) nickError.textContent = "형식이 올바르지 않습니다. (영문자/숫자/.-_ 3~20자)";
     if (toStep2) toStep2.disabled = true;
     nicknameOK = false;
     return;
