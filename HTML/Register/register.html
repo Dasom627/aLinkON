@@ -61,53 +61,64 @@
               <div class="error" id="pwError"></div> <!--에러 메세지를 띄워줄 자리-->
             </label>
 
-            <label class="field"> 
-              <span class="label">비밀번호 확인</span>
-              <input id="password2" type="password" autocomplete="new-password"
+            <label class="field"> <!--내용 입력창과 중복확인 버튼을 감싼다-->
+              <span class="label">비밀번호 확인</span> <!--화면에 보이는 택스트이다-->
+              <input id="password2" type="password" autocomplete="new-password" 
                      placeholder="비밀번호 재입력" minlength="8" required />
-              <div class="error" id="pw2Error"></div>
+                     <!-- id는 입력창의 고유식별자, password형식으로 비밀번호를 받고, autocomplete는 자동완성을 할 수 있게 돕는다-->
+                     <!--입력 전 회색 글씨로 보여주고, 최소 글자는 8자, 비워두면 폼 제출 불가-->
+              <div class="error" id="pw2Error"></div> <!--오류 메세지를 표시하는 공간이다-->
             </label>
           </div>
-          <div class="actions">
+          <div class="actions"> <!--버튼들을 담는 영역-->
             <button type="button" class="btn light" data-back>이전</button>
+            <!--이전으로 가는 버튼이다-->
             <button type="button" class="btn primary" id="toStep3" disabled>다음</button>
+            <!--버튼을 만들고, 처음에는 비활성화를 시켜놓는다-->
           </div>
         </div>
 
         <!-- STEP 3 -->
-        <div class="panel" data-step="3" role="group" aria-labelledby="step3">
-          <h2 id="step3" class="sr-only">이메일/전화 인증 및 관심 분야</h2>
+        <div class="panel" data-step="3" role="group" aria-labelledby="step3"> <!--3단계 패널이다-->
+          <h2 id="step3" class="sr-only">이메일/전화 인증 및 관심 분야</h2> <!--시각장애인용 안내 문구이다-->
 
-          <div class="grid">
-            <label class="field">
-              <span class="label">이메일</span>
-              <div class="with-button">
+          <div class="grid"> <!--입력창 부분을 감싸는 컨테이너이다-->
+            <label class="field"> <!--이메일 버튼을 감싼다-->
+              <span class="label">이메일</span> <!--화면에 보이는 택스트이다-->
+              <div class="with-button"> <!--입력창과 버튼을 하나로 묶어 같은줄에 놓는 컨테이너-->
                 <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
-                <button type="button" class="btn secondary" id="sendEmailCode">코드발송</button>
+                <!--id는 입력창의 고유식별자, email형식으로 email을 받고, autocomplete는 자동완성을 할 수 있게하고, 입력전에 회색글씨를 띠운다-->
+                <button type="button" class="btn secondary" id="sendEmailCode">코드발송</button>               
+                <!--글자가 써지는 버튼이다-->
               </div>
-              <div class="error" id="emailError"></div>
+              <div class="error" id="emailError"></div> <!--이메일 에러가 뜨는 자리이다-->
             </label>
 
-            <label class="field">
-              <span class="label">이메일 인증코드</span>
+            <label class="field"> <!--이메일 인증코드를 붙이는 자리이다-->
+              <span class="label">이메일 인증코드</span> <!--화면에 보이는 텍스트이다-->
               <input id="emailCode" type="text" inputmode="numeric" placeholder="6자리" maxlength="6" />
-              <div class="error" id="emailCodeError"></div>
+              <!--숫자 키패드를 띄우고 최대 6글자를 입력받는다. 회색글씨로 글자를 띄우고, 글자형식으로 받는다-->
+              <div class="error" id="emailCodeError"></div> <!--에러라는 글자를 뛰울 공간을 만든다-->
             </label>
 
-            <label class="field">
-              <span class="label">전화번호</span>
-              <div class="with-button">
+            <label class="field"> <!--전화번호 입력창을 감싼다-->
+              <span class="label">전화번호</span> <!--전화번호라는 글자를 띠운다-->
+              <div class="with-button"> <!--입력창과 버튼을 하나로 묶어 같은줄에 놓는 컨테이너-->
                 <input id="phone" name="tel" type="tel" autocomplete="tel"
                        placeholder="010-1234-5678" pattern="^01[016789]-?\d{3,4}-?\d{4}$" required />
-                <button type="button" class="btn secondary" id="sendSmsCode">코드발송</button>
+                <!--id는 입력창의 고유식별자, tel형식으로 tel을 받고, autocomplete는 자동완성을 할 수 있게한다-->
+                <!--입력전에 회색글씨를 띠우고, 전화번호 형식을 처음은 01로 시작하고 -을 쓰거나 그냥 공백으로 두게 하며 
+                두 번째에는 3~4글자를 받으며 마지막은 4글자로 하며 값이 입력받아야만 다음으로 넘어간다-->
+                <button type="button" class="btn secondary" id="sendSmsCode">코드발송</button> <!--글자가 새겨진 버튼이다-->
               </div>
-              <div class="error" id="phoneError"></div>
+              <div class="error" id="phoneError"></div> <!--폰 에러가 뜨는 자리이다-->
             </label>
 
-            <label class="field">
-              <span class="label">문자 인증코드</span>
-              <input id="smsCode" type="text" inputmode="numeric" placeholder="6자리" maxlength="6" />
-              <div class="error" id="smsCodeError"></div>
+            <label class="field"> <!--문자 인증부분창을 감싼다-->
+              <span class="label">문자 인증코드</span> <!--문자 인증코드라는 글자를 띠운다-->
+              <input id="smsCode" type="text" inputmode="numeric" placeholder="6자리" maxlength="6" /> 
+              <!--숫자 키패드를 띄우고 최대 6글자를 입력받는다. 회색글씨로 글자를 띄우고, 글자형식으로 받는다-->
+              <div class="error" id="smsCodeError"></div> <!--에러를 띠울 자리-->
             </label>
 
             <label class="field">
