@@ -1,32 +1,33 @@
 /* =============== LinkON Register – Clean Reset CSS =============== */
-:root{
+:root{ /*최상위 요소이다*/
   /* 색상 토큰 */
-  --bg:#fff8e6;
-  --card:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
-  --border:#e5e7eb;
-  --brand:#f2b300;      /* LinkON yellow */
-  --brand-ink:#1f2937;
-  --focus:#2563eb;
-  --shadow:0 20px 50px rgba(17,24,39,.08);
+  --bg:#fff8e6; /*bg를 적용하면 되는 색상*/
+  --card:#ffffff; /*card를 적용하면 되는 색상*/
+  --text:#111827; /*text를 적용하면 되는 색상*/
+  --muted:#6b7280; /*muted를 적용하면 되는 색상*/
+  --border:#e5e7eb; /*border를 적용하면 되는 색상*/
+  --brand:#f2b300; /*brand를 적용하면 되는 색상*/
+  --brand-ink:#1f2937; /*brand-ink를 적용하면 되는 색상*/
+  --focus:#2563eb; /*focus를 적용하면 되는 색상*/
+  --shadow:0 20px 50px rgba(17,24,39,.08); 
+  /*그림자를 나타내고, x축으로 0px y축으로 20px, 번짐 정도를 50px로 한다 색은 rgb안에 있는 값이다*/
 
   /* 폼 토큰(기본) */
-  --field-h:56px;
-  --field-radius:20px;
-  --field-pad-x:16px;
+  --field-h:56px; /*56픽셀로 한다*/
+  --field-radius:20px; /*20픽셀로 한다*/
+  --field-pad-x:16px; /*16픽셀로 한다*/
 
   /* 레이아웃 */
   --card-h:min(720px, calc(100svh - 48px)); /* 모든 스텝 카드 높이 */
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Pretendard,Arial,sans-serif;
-  color:var(--text);
-  background:var(--bg);
+*{ box-sizing:border-box; } /*모든 요소를 border box로 한다*/
+html,body{ height:100%; } /*html과 body부분의 높이를 화면에 100프로 맞게 한다*/
+body{ /*body에 포함된 요소를 정리한다*/
+  margin:0; /*마진은 0으로 한다*/
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Pretendard,Arial,sans-serif; /*폰트 스타일을 정한다*/
+  color:var(--text); /*폰트색을 text의 지정된 색으로 한다*/
+  background:var(--bg); /*배경의 색을 bg로 지정된 색으로 한다*/
   overflow-x:hidden; /* 가로 스크롤 차단 */
 }
 
