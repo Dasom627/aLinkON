@@ -196,7 +196,7 @@ form?.addEventListener("submit", async (e) => {
     email:    email?.value.trim(),
     phone:    phone?.value.trim(),
     // 실제 서비스: 비밀번호는 서버에서 bcrypt/argon2로 해시 저장하세요.
-    password_hash: null
+    password_hash: password?.value
   };
 
   try {
@@ -208,6 +208,8 @@ form?.addEventListener("submit", async (e) => {
 
     if (r.ok){
       alert("가입 완료! 🎉 이제 이력서는 나중에 천천히 채워요.");
+      window.location.href = "/HTML/index/index.html?joined=1"; 
+      //가입 완료 후 로그인 화면으로 이동
       // TODO: 완료 페이지로 이동 등
     }else if (r.status === 409){
       alert("닉네임이 방금 선점됐어요. 다시 선택해주세요.");
@@ -219,3 +221,51 @@ form?.addEventListener("submit", async (e) => {
     alert("네트워크 오류가 발생했습니다.");
   }
 });
+
+// 로그인 폼 전송
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  const emailEl = document.getElementById("#email");
+  const pwEl = document.getElementById("#password");
+  const errEl = document.getElementById("#loginError");
+  const btnEl = document.getElementById("#loginBtn");
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errEl.textContent = "";
+
+    const email = emailEl.value.trim();
+    const password = pwEl.value;
+
+    if (!email || !password) {
+      errEl.textContent = "이메일과 비밀번호를 입력해 주세요.";
+      return;
+    }
+
+    btnEl.disabled = true;
+
+    try {
+      const res = await fetch("${API}/api/login", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ email, password }),
+        credentials: "include", // 쿠키(JWT) 수신
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        errEl.textContent = data.error || "로그인에 실패했어요.";
+        btnEl.disabled = false;
+        return;
+      }
+
+      // 로그인 성공 → 메인으로 이동 (원하는 경로로 바꿔도 됨)
+      window.location.href = "/HTML/Index/index.html";
+    } catch (err) {
+      console.error(err);
+      errEl.textContent = "네트워크 오류가 발생했어요. 잠시 후 다시 시도해 주세요.";
+      btnEl.disabled = false;
+    }
+  });
+}
