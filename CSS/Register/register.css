@@ -110,87 +110,96 @@ body{ /*body에 포함된 요소를 정리한다*/
 
 /* ===== 공통 필드 ===== */
 .field{ display:flex; flex-direction:column; gap:6px; min-width:0; }
-.label{ font-weight:600; }
-.hint{ color:var(--muted); }
-.error{
-  color:#dc2626;
-  min-height:1.2em;
-  font-size:13px;
-  margin-bottom:2px;
-  line-height:1.25;
+/*field 클래스를 flex컨테이너로 지정하고, 간격은 6px을 하고, 부모 클래스를 못 넘기게 한다*/
+.label{ font-weight:600; } /*label 클래스는 폰트 크기를 600으로 한다*/
+.hint{ color:var(--muted); } /*hint 클래스에 muted에 지정된 색을 적용한다*/
+.error{ /*error 클래스에 적용한다*/
+  color:#dc2626; /*빨강색으로 적용한다*/
+  min-height:1.2em; /*박스의 한 줄 크기를 글자의 1.2배로 한다*/
+  font-size:13px; /*글자 크기는 13px로 한다*/
+  margin-bottom:2px; /*아래쪽 마진은 2px로 한다*/
+  line-height:1.25; /*글 사이 간격은 1.25배로 한다*/
 }
 
 /* 인풋 기본 규칙 – checkbox는 제외! */
 input, select, button, textarea{ font:inherit; }
-input:not([type="checkbox"]),
-select, textarea{
-  height: var(--field-h);
-  width:100%;
-  padding:0 var(--field-pad-x);
-  border-radius: var(--field-radius);
-  line-height:1;
-  border:1px solid var(--border);
-  background:#fff; outline:none;
-  max-width:100%;
+/*input, select, button, textarea의 요소의 폼에 폰트관련된 내용은 모두 상속받는다*/
+input:not([type="checkbox"]), select, textarea{
+/*체크박스를 제외한 input,그리고 select, textarea 이 3가지 모두에 같은 스타일을 적용*/
+  height: var(--field-h); /*크기는 --field-h에서 지정한 값*/
+  width:100%; /*요소의 가로 너비를 부모요소의 100프로로 한다*/
+  padding:0 var(--field-pad-x); /*패딩은 위아래 0, 좌우는 --field-pad-x로 지정된 값을 쓴다*/
+  border-radius: var(--field-radius); /*모서리를 --field-radius에 지정된 값만큼 둥글게 한다*/
+  line-height:1; /*글 사이 간견을 1배로 한다*/
+  border:1px solid var(--border); /*경계선을 1px의 실선으로 --border에 지정된 색으로 한다*/
+  background:#fff; outline:none; /*배경은 흰색 배경으로 하고, 바깥선은 없음으로 한다*/
+  max-width:100%; /*요소의 너비가 최대 부모의 100%까지만 허용된다는 뜻이다*/
 }
-input:focus, select:focus, textarea:focus{
-  border-color:var(--focus);
-  box-shadow:0 0 0 3px rgba(37,99,235,.15);
+input:focus, select:focus, textarea:focus{ /*사용자가 input,select,textarea에 초점을 두었을 때 적용된다*/
+  border-color:var(--focus); /*경계선 색은 focus에 지정한 색으로 한다*/
+  box-shadow:0 0 0 3px rgba(37,99,235,.15); 
+  /*박스의 그림자를 x,y에 0을 지정하고, 흐림은 없고, 3px을 번지게 하고, 검은색을 지정한다*/
 }
-textarea{
-  height:auto; min-height: var(--field-h);
-  resize: vertical;
+textarea{ /*textarea 클래스에 적용한다*/
+  height:auto; min-height: var(--field-h); /*크기는 자동으로 하고, 최소 높이는 --field-h 값에 적용한다*/
+  resize: vertical; /*세로 방향으로만 크기를 조절할 수 있다*/
 }
 
 /* 체크박스는 작게 */
-input[type="checkbox"]{
-  width:18px; height:18px; padding:0; border-radius:4px;
+input[type="checkbox"]{ /*input폼의 체크박스에 적용한다*/
+  width:18px; height:18px; padding:0; border-radius:4px; /*가로는 18px, 세로는 18px, 패딩은 0, 모서리는 4px정도 둥글게 한다*/
 }
 
 /* with-button(인증코드 라인 등) */
-.with-button{
-  display:grid; gap:8px;
-  grid-template-columns:1fr auto;
-  min-width:0;
+.with-button{ /*with-button의 클래스에 적용한다*/
+  display:grid; gap:8px; /*grid 컨테이너로 하고, 간격은 8px로 한다*/
+  grid-template-columns:1fr auto; /*grid 컨테이너는 가로로 1fr과 auto로 나눈다*/
+  min-width:0; /*가로의 최소의 크기를 0으로 한다*/
 }
-.with-button input{ min-width:0; }
+.with-button input{ min-width:0; } /*with-button클래스에 input폼의 최소 가로의 크기는 0으로 한다*/
 
 /* ===== 버튼 ===== */
-.btn{
-  border-radius:var(--field-h);
-  padding:0 var(--field-pad-x);
-  border:1px solid transparent;
-  cursor:pointer;
-  height: var(--field-h);
-  line-height:1;
+.btn{ /*btn클래스에 적용한다*/
+  border-radius:var(--field-h); /*모서리를 --field-h에 지정된 값만큼 둥글게 한다*/
+  padding:0 var(--field-pad-x); /*패딩은 위아래 0, 좌우는 --field-pad-x로 지정된 값을 쓴다*/
+  border:1px solid transparent; /*실선을 1px의 투명한 실선으로 한다*/
+  cursor:pointer; /*마우스 모양을 올리면 커서가 손가락 모양으로 바뀜*/
+  height: var(--field-h); /*높이는 --field-h에서 지정한 값으로 한다*/
+  line-height:1; /*줄 사이 간격은 1로 한다*/
   display:inline-flex; align-items:center; justify-content:center;
+  /*인라인 요소의 flex컨테이너를 만들고, 가로와 세로 모두 가운데 정렬을 한다*/
 }
 .btn.primary{ background:var(--brand); color:var(--brand-ink); font-weight:700; }
-.btn.primary:disabled{ opacity:.5; cursor:not-allowed; }
-.btn.secondary{ background:#f7f7f7; border-color:var(--border); }
+/*btn과 primary클래스에 배경색을 --brand색으로 하고, 색을 --brand-ink로 쓰고, 글자 크기를 700px로 한다*/
+.btn.primary:disabled{ opacity:.5; cursor:not-allowed; } 
+/*btn과 primary클래스에 비활성화 버튼에 투명도를 50퍼센트 줄여서 흐리게 보이게 하고, 마으스를 올렸을 때 금지 표시 커서가 뜨게 한다*/
+.btn.secondary{ background:#f7f7f7; border-color:var(--border); } 
+/*btn과 secondary클래스에 배경은 흰색으로 하고, 경계선은 --border에서 지정한 색으로 한다*/
 .btn.light{ background:#fff; border:1px solid var(--border); }
+/*btn과 light클래스에 배경은 흰색으로 하고 경계선은 1px에 --border가 지정해준 실선으로 한다*/
 
 /* ===== 액션 버튼 ===== */
 .actions{
   display:flex; justify-content:flex-end; gap:8px;
-  padding-top:8px;
+  /*flex 컨테이너로 하고 오른쪽 끝에 정렬하며 간격은 8px로 한다*/
+  padding-top:8px; /*위쪽 패딩은 8px로 한다*/
 }
 
 /* ===== 푸터 ===== */
-.footer{
-  text-align:center;
-  padding:4px 0 0;
-  margin-top:6px;
+.footer{ /*footer클래스에 적용한다*/
+  text-align:center; /*글자를 가운데로 정렬한다*/
+  padding:4px 0 0; /*패딩을 위에는 4px로 하고, 좌우와 아래에는 0으로 한다*/
+  margin-top:6px; /*위에 마진은 6px로 한다*/
 }
-.link{ color:#2563eb; text-decoration:none; }
-.link:hover{ text-decoration:underline; }
+.link{ color:#2563eb; text-decoration:none; } /*link 클래스에 색은 파랑으로 하고 글자를 꾸미지는 않는다*/
+.link:hover{ text-decoration:underline; } /*link 클래스에 마우스를 올렸을 때 밑줄이 적용된다*/
 
 /* ===== 접근성 ===== */
-.sr-only{
-  position:absolute !important;
-  width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0,0,0,0);
-  white-space:nowrap; border:0;
+.sr-only{ /*sr-only클래스에 적용한다*/
+  position:absolute !important; /*위치는 절대좌표로 고정하며 이 규칙이 최우선권을 가진다*/
+  width:1px; height:1px; padding:0; margin:-1px; /*가로는 1px, 높이는 1px, 패딩은 0, 마진은 -1px로 한다*/
+  overflow:hidden; clip:rect(0,0,0,0); /*넘치면 숨기고, 위아래 0px, 좌우 0px로 잘라내어 안 보이게 하지만 스크린리더에서 필요하다*/
+  white-space:nowrap; border:0; /*텍스트의 줄바꿈을 하지 않고 경계선을 0으로 한다*/
 }
 
 /* ===========================================================
@@ -271,5 +280,3 @@ input[type="checkbox"]{
 
 /* 푸터가 하단에 가려지지 않도록 여유 */
 .footer{ padding: 12px 0 16px; }          /* 여백을 조금 더 */
-
-
