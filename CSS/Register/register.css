@@ -277,7 +277,7 @@ input[type="checkbox"]{ /*input폼의 체크박스에 적용한다*/
 
 /* 패널은 스크롤 막지 않도록 */
 .panel{ overflow: visible; }
-.panel.is-active{ overflow: visible; } /*
+.panel.is-active{ overflow: visible; } /*스크롤 밖에 밖에 보이게 한다*/
 
 /* 푸터가 하단에 가려지지 않도록 여유 */
 .footer{ padding: 12px 0 16px; }          /* 여백을 조금 더 */
