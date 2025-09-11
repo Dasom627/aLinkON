@@ -37,10 +37,10 @@ document.querySelectorAll("[data-back]").forEach(b => b.addEventListener("click"
 /* =========================
    STEP 1: 닉네임 중복확인
    ========================= */
-const nickname = document.getElementById("nickname"); //HTML에서 id가 "nickname"인 요소를 찾아서 그걸 JS 변수 nickname에 저장하는 코드
-const checkDupBtn = document.getElementById("checkDupBtn"); //HTML에서 id가 "checkDupBtn"인 요소를 찾아서 그걸 JS 변수 checkDupBtn에 저장하는 코드
-const nickError = document.getElementById("nickError"); //HTML에서 id가 "nickError"인 요소를 찾아서 그걸 JS 변수 nickError에 저장하는 코드
-const toStep2 = document.getElementById("toStep2"); //HTML에서 id가 "toStep2"인 요소를 찾아서 그걸 JS 변수 toStep2에 저장하는 코드
+const nickname = document.getElementById("nickname"); //HTML에서 id가 "nickname"인 요소를 찾아서 그걸 JS 변수 nickname에 저장
+const checkDupBtn = document.getElementById("checkDupBtn"); //HTML에서 id가 "checkDupBtn"인 요소를 찾아서 그걸 JS 변수 checkDupBtn에 저장
+const nickError = document.getElementById("nickError"); //HTML에서 id가 "nickError"인 요소를 찾아서 그걸 JS 변수 nickError에 저장
+const toStep2 = document.getElementById("toStep2"); //HTML에서 id가 "toStep2"인 요소를 찾아서 그걸 JS 변수 toStep2에 저장
 
 const reNick = /^[A-Za-z0-9._-]{3,20}$/; // 영문 소문자/숫자/.-_ 3~20자
 let nicknameOK = false; //초기 상태를 닉네임이 확인되지 않은 상태로 기억함
@@ -97,101 +97,103 @@ toStep2?.addEventListener("click", () => { if (nicknameOK) goto(2); });
 /* =========================
    STEP 2: 비밀번호
    ========================= */
-const password   = document.getElementById("password");
-const password2  = document.getElementById("password2");
-const pwError    = document.getElementById("pwError");
-const pw2Error   = document.getElementById("pw2Error");
-const toStep3    = document.getElementById("toStep3");
+const password = document.getElementById("password"); //HTML에서 id가 "password"인 요소를 찾아서 그걸 JS 변수 password에 저장
+const password2 = document.getElementById("password2"); //HTML에서 id가 "password2"인 요소를 찾아서 그걸 JS 변수 password2에 저장
+const pwError = document.getElementById("pwError"); //HTML에서 id가 "pwError"인 요소를 찾아서 그걸 JS 변수 pwError에 저장
+const pw2Error = document.getElementById("pw2Error"); //HTML에서 id가 "pw2Error"인 요소를 찾아서 그걸 JS 변수 pw2Error에 저장
+const toStep3 = document.getElementById("toStep3"); //HTML에서 id가 "toStep3"인 요소를 찾아서 그걸 JS 변수 toStep3에 저장
 
-function validatePw(){
-  let ok = true;
-  if (pwError)  pwError.textContent = "";
-  if (pw2Error) pw2Error.textContent = "";
+function validatePw(){ //validatePw()함수를 정의하고 비밀번호 유효성 검사를 한다
+  let ok = true; //ok라는 변수를 선언하고 참으로 한다
+  if (pwError)  pwError.textContent = ""; //pwError가 나면 텍스트 공간을 빈공간으로 초기화한다
+  if (pw2Error) pw2Error.textContent = ""; //pw2Error가 나면 텍스트 공간을 빈공간으로 초기화한다
 
-  if (!password?.value || password.value.length < 8){
-    if (pwError) pwError.textContent = "8자 이상 입력하세요.";
-    ok = false;
+  if (!password?.value || password.value.length < 8){ //비밀번호(password)의 값이 없거나 글자의 길이가 8글자 미만이면
+    if (pwError) pwError.textContent = "8자 이상 입력하세요."; //텍스트를 나타내는 공간에 텍스트를 표시한다
+    ok = false; //ok값을 false로 한다
   }
-  if (!password2?.value || password2.value !== password.value){
-    if (pw2Error) pw2Error.textContent = "비밀번호가 일치하지 않습니다.";
-    ok = false;
+  if (!password2?.value || password2.value !== password.value){ //비밀번호(password2)의 값이 없거나 비밀번호(password)와 비밀번호2(password2)의 글자가 같지 않으면
+    if (pw2Error) pw2Error.textContent = "비밀번호가 일치하지 않습니다."; //텍스트를 나타내는 공간에 텍스트를 표시한다
+    ok = false; //ok값을 false로 한다
   }
-  if (toStep3) toStep3.disabled = !ok;
+  if (toStep3) toStep3.disabled = !ok; //ok가 true면 toStep3 값을 가질 수 있다
 }
-password?.addEventListener("input", validatePw);
-password2?.addEventListener("input", validatePw);
-toStep3?.addEventListener("click", () => goto(3));
+password?.addEventListener("input", validatePw); //사용자가 비밀번호를 바꾸면 validatePw함수를 신청한다
+password2?.addEventListener("input", validatePw); //사용자가 비밀번호2를 바꾸면 validatePw함수를 신청한다
+toStep3?.addEventListener("click", () => goto(3)); //버튼을 누르면 다음 페이지로 넘어가게 한다
 
 /* =========================
    STEP 3: 이메일/전화 인증 + 관심
    ========================= */
-const email          = document.getElementById("email");
-const emailError     = document.getElementById("emailError");
-const emailCodeInput = document.getElementById("emailCode");
-const emailCodeError = document.getElementById("emailCodeError");
-const sendEmailCode  = document.getElementById("sendEmailCode");
+const email = document.getElementById("email"); //HTML에서 id가 "email"인 요소를 찾아서 그걸 JS 변수 email에 저장
+const emailError = document.getElementById("emailError"); //HTML에서 id가 "emailError"인 요소를 찾아서 그걸 JS 변수 emailError에 저장
+const emailCodeInput = document.getElementById("emailCode"); //HTML에서 id가 "emailCode"인 요소를 찾아서 그걸 JS 변수 emailCodeInput에 저장
+const emailCodeError = document.getElementById("emailCodeError"); //HTML에서 id가 "emailCodeError"인 요소를 찾아서 그걸 JS 변수 emailCodeError에 저장
+const sendEmailCode = document.getElementById("sendEmailCode"); //HTML에서 id가 "sendEmailCode"인 요소를 찾아서 그걸 JS 변수 sendEmailCode에 저장
 
-const phone          = document.getElementById("phone");
-const phoneError     = document.getElementById("phoneError");
-const smsCodeInput   = document.getElementById("smsCode");
-const smsCodeError   = document.getElementById("smsCodeError");
-const sendSmsCode    = document.getElementById("sendSmsCode");
+const phone = document.getElementById("phone"); //HTML에서 id가 "phone"인 요소를 찾아서 그걸 JS 변수 phone에 저장
+const phoneError = document.getElementById("phoneError"); //HTML에서 id가 "phoneError"인 요소를 찾아서 그걸 JS 변수 phoneError에 저장
+const smsCodeInput = document.getElementById("smsCode"); //HTML에서 id가 "smsCode"인 요소를 찾아서 그걸 JS 변수 smsCodeInput에 저장
+const smsCodeError = document.getElementById("smsCodeError"); //HTML에서 id가 "smsCodeError"인 요소를 찾아서 그걸 JS 변수 smsCodeError에 저장
+const sendSmsCode = document.getElementById("sendSmsCode"); //HTML에서 id가 "sendSmsCode"인 요소를 찾아서 그걸 JS 변수 sendSmsCode에 저장
 
-const interest       = document.getElementById("interest");
-const interestError  = document.getElementById("interestError");
-const tos            = document.getElementById("tos");
-const submitBtn      = document.getElementById("submitBtn");
+const interest = document.getElementById("interest"); //HTML에서 id가 "interest"인 요소를 찾아서 그걸 JS 변수 interest에 저장
+const interestError = document.getElementById("interestError"); //HTML에서 id가 "interestError"인 요소를 찾아서 그걸 JS 변수 interestError에 저장
+const tos = document.getElementById("tos"); //HTML에서 id가 "tos"인 요소를 찾아서 그걸 JS 변수 tos에 저장
+const submitBtn = document.getElementById("submitBtn"); //HTML에서 id가 "submitBtn"인 요소를 찾아서 그걸 JS 변수 submitBtn에 저장
 
-let emailCode = null;
-let smsCode   = null;
+let emailCode = null; //emailCode를 만들고 값을 비워둔다
+let smsCode = null; //smsCode를 만들고 값을 비워둔다
 
 function makeCode(){ return String(Math.floor(100000 + Math.random()*900000)); }
+//makeCode함수를 정의하고, 소수점값을 버리고, 100000부터 999999미만의 난수를 만들어 문자열 값으로 리턴한다
 
-sendEmailCode?.addEventListener("click", () => {
-  if (!email?.validity.valid){
-    if (emailError) emailError.textContent = "올바른 이메일을 입력하세요.";
-    return;
+sendEmailCode?.addEventListener("click", () => { //sendEmailCode라는 버튼이 있다면 클릭 안에 버튼을 실행
+  if (!email?.validity.valid){ //email 입력창이 없거나, 입력한 이메일이 유효하지 않으면 
+    if (emailError) emailError.textContent = "올바른 이메일을 입력하세요."; //emailError라는 공간에서 에러 메세지를 표시한다
+    return; //함수 실행되면 즉시 종료
   }
-  if (emailError) emailError.textContent = "";
-  emailCode = makeCode();
-  alert(`이메일 인증코드(데모): ${emailCode}`);
+  if (emailError) emailError.textContent = ""; //이메일이 유효할 경우 에러 메시지를 빈칸으로 채운다
+  emailCode = makeCode(); //함수를 실행해서 랜덤한 인증코드를 만든 뒤 그 값을 emailCode 변수에 저장한다
+  alert(`이메일 인증코드(데모): ${emailCode}`); //이메일 인증 코드를 알림창에 띄운다
 });
 
-sendSmsCode?.addEventListener("click", () => {
-  const re = /^01[016789]-?\d{3,4}-?\d{4}$/;
-  if (!phone?.value || !re.test(phone.value.trim())){
-    if (phoneError) phoneError.textContent = "올바른 전화번호 형식(010-1234-5678)";
-    return;
+sendSmsCode?.addEventListener("click", () => { //sendSmsCode의 버튼을 클릭하면
+  const re = /^01[016789]-?\d{3,4}-?\d{4}$/; //re변수에 전화번호 형식으로 숫자를 입력을 받음
+  if (!phone?.value || !re.test(phone.value.trim())){ //만약 전화번호 입력 받는 공간이 비어있거나 형식을 잘못 입력받으면
+    if (phoneError) phoneError.textContent = "올바른 전화번호 형식(010-1234-5678)"; //Error텍스트를 띄우는 공간에 텍스트를 띄운다
+    return; //함수를 종료한다
   }
-  if (phoneError) phoneError.textContent = "";
-  smsCode = makeCode();
-  alert(`문자 인증코드(데모): ${smsCode}`);
+  if (phoneError) phoneError.textContent = ""; //만약 제대로 된 값이 들어온다면 에러 메세지를 띄우지 않고
+  smsCode = makeCode(); //smsCode라는 변수에 makeCode함수를 실행해서 넣는다
+  alert(`문자 인증코드(데모): ${smsCode}`); //알림창으로 문자인증코드를 뜨게 한다
 });
 
-function validateFinal(){
+function validateFinal(){ //최종 검증을 하기위해 함수 정의
   // 기본 입력 검증
-  if (emailError) emailError.textContent = (email?.validity.valid ? "" : "이메일을 확인하세요.");
-  const phoneOk = phone?.value && /^01[016789]-?\d{3,4}-?\d{4}$/.test(phone.value.trim());
-  if (phoneError) phoneError.textContent = (phoneOk ? "" : "전화번호를 확인하세요.");
-  if (interestError) interestError.textContent = (interest?.value ? "" : "관심 분야를 선택하세요.");
+  if (emailError) emailError.textContent = (email?.validity.valid ? "" : "이메일을 확인하세요."); //이메일 에러 중 입력 형식이 맞다면 빈칸을 아니면 텍스트를 띄운다
+  const phoneOk = phone?.value && /^01[016789]-?\d{3,4}-?\d{4}$/.test(phone.value.trim()); //전화번호가 형식에 맞는지 확인한 뒤 phoneOk라는 변수에 결과를 저장
+  if (phoneError) phoneError.textContent = (phoneOk ? "" : "전화번호를 확인하세요."); //전화번호 에러 중 입력 형식이 맞다면 빈칸을 아니면 텍스트를 띄운다
+  if (interestError) interestError.textContent = (interest?.value ? "" : "관심 분야를 선택하세요."); //관심분야 형식에 입력이 있다면 빈칸 아니면 텍스트를 띄운다
 
   // 코드 일치 확인
-  const emailOk = email?.validity.valid && emailCode && emailCodeInput?.value === emailCode;
-  const smsOk   = phoneOk && smsCode && smsCodeInput?.value === smsCode;
+  const emailOk = email?.validity.valid && emailCode && emailCodeInput?.value === emailCode; //emailCodeInput에 입력한 값이 emailCode랑 같아야 한다
+  const smsOk   = phoneOk && smsCode && smsCodeInput?.value === smsCode; //smsCodeInput에 입력한 값이 emailCode랑 같아야 한다
 
-  if (emailCodeError) emailCodeError.textContent = emailOk ? "" : "이메일 인증코드를 확인하세요.";
-  if (smsCodeError)   smsCodeError.textContent   = smsOk   ? "" : "문자 인증코드를 확인하세요.";
+  if (emailCodeError) emailCodeError.textContent = emailOk ? "" : "이메일 인증코드를 확인하세요."; //조건이 email에러가 뜨지 않으면 텍스트를 전송한다
+  if (smsCodeError)   smsCodeError.textContent   = smsOk   ? "" : "문자 인증코드를 확인하세요."; //조건이 sms에러가 뜨지 않으면 텍스트를 전송한다
 
-  const ready = emailOk && smsOk && !!interest?.value && !!tos?.checked;
-  if (submitBtn) submitBtn.disabled = !ready;
+  const ready = emailOk && smsOk && !!interest?.value && !!tos?.checked; //email과 sms와 관심사와 약관동의가 되어야 true라는 값을 반환한다
+  if (submitBtn) submitBtn.disabled = !ready; //submit버튼이 있고, 준비가 안되면 비활성화, 준비가 되면 활성화한다
+
 }
-["input","change"].forEach(ev=>{
-  email?.addEventListener(ev, validateFinal);
-  emailCodeInput?.addEventListener(ev, validateFinal);
-  phone?.addEventListener(ev, validateFinal);
-  smsCodeInput?.addEventListener(ev, validateFinal);
-  interest?.addEventListener(ev, validateFinal);
-  tos?.addEventListener(ev, validateFinal);
+["input","change"].forEach(ev=>{  //input과 change 두 개의 이벤트에 실행된다 (3번째 페이지에 해당해서)
+  email?.addEventListener(ev, validateFinal); //email에 이벤트가 발생할 때마다 다시 검사한다
+  emailCodeInput?.addEventListener(ev, validateFinal); //emailCodeInput에 이벤트가 발생할 때마다 다시 검사한다
+  phone?.addEventListener(ev, validateFinal); //phone에 이벤트가 발생할 때마다 다시 검사한다
+  smsCodeInput?.addEventListener(ev, validateFinal); //email에 이벤트가 발생할 때마다 다시 검사한다
+  interest?.addEventListener(ev, validateFinal); //interest에 이벤트가 발생할 때마다 다시 검사한다
+  tos?.addEventListener(ev, validateFinal); //tos에 이벤트가 발생할 때마다 다시 검사한다
 });
 
 /* =========================
