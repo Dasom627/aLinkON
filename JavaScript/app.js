@@ -199,10 +199,10 @@ function validateFinal(){ //최종 검증을 하기위해 함수 정의
 /* =========================
    최종 제출 → /api/signup
    ========================= */
-form?.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  validateFinal();
-  if (submitBtn?.disabled) return;
+form?.addEventListener("submit", async (e) => { //form요소를 제출할 때
+  e.preventDefault(); //기본 동작(새로고침 + 전송) 막기
+  validateFinal(); //최종 검증 실행 (모든 칸 채워졌는지, 체크박스 동의했는지 등)
+  if (submitBtn?.disabled) return; //아직 조건 안 맞으면 함수 종료
 
   const payload = {
     nickname: nickname?.value.trim(),
