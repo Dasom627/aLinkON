@@ -204,44 +204,44 @@ form?.addEventListener("submit", async (e) => { //form요소를 제출할 때
   validateFinal(); //최종 검증 실행 (모든 칸 채워졌는지, 체크박스 동의했는지 등)
   if (submitBtn?.disabled) return; //아직 조건 안 맞으면 함수 종료
 
-  const payload = {
-    nickname: nickname?.value.trim(),
-    email:    email?.value.trim(),
-    phone:    phone?.value.trim(),
+  const payload = { //서버로 묶어 보낼 payload라는 변수를 만든다
+    nickname: nickname?.value.trim(), //nickname에 앞 뒤 공백은 제거 후 저장
+    email: email?.value.trim(), //email에 앞 뒤 공백은 제거 후 저장
+    phone: phone?.value.trim(), //phone에 앞 뒤 공백은 제거 후 저장
     // 실제 서비스: 비밀번호는 서버에서 bcrypt/argon2로 해시 저장하세요.
-    password_hash: password?.value
+    password_hash: password?.value //password_hash에 앞 뒤 공백은 제거 후 저장
   };
 
-  try {
-    const r = await fetch(`${API}/api/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+  try { //try부분이다 실패하면 오류로 넘어간다
+    const r = await fetch(`${API}/api/signup`, { //api 엔드 포인트를 호출해 r에 서버가 어떻게 응답했는지에 대한 정보를 넣는다
+      method: "POST", //데이터를 새로 등록할 때 
+      headers: { "Content-Type": "application/json" }, //서버에게 내가 보내는 데이터가 json형식이라는 걸 알려주는 역할
+      body: JSON.stringify(payload) //실제로 서버에 보낼 데이터를 문자열로 바꿔 넣는 것
     });
 
-    if (r.ok){
-      alert("가입 완료! 🎉 이제 이력서는 나중에 천천히 채워요.");
-      window.location.href = "/HTML/index/index.html?joined=1"; 
+    if (r.ok){ //서버와 응답이 성공적으로 되었다면
+      alert("가입 완료! 🎉 이제 이력서는 나중에 천천히 채워요."); //알림창에 메세지를 띄운다
+      window.location.href = "/HTML/index/index.html?joined=1"; //로그인 화면으로 강제로 이동시킨다
       //가입 완료 후 로그인 화면으로 이동
       // TODO: 완료 페이지로 이동 등
-    }else if (r.status === 409){
-      alert("닉네임이 방금 선점됐어요. 다시 선택해주세요.");
-      goto(1);
-    }else{
-      alert("서버 오류가 발생했습니다.");
+    }else if (r.status === 409){ //서버에서 충돌이 일어날 때
+      alert("닉네임이 방금 선점됐어요. 다시 선택해주세요."); //알림창에 텍스트를 띄운다
+      goto(1); //회원가입 1단계로 다시 돌아간다
+    }else{ //서버에서 오류가 발생했을 때
+      alert("서버 오류가 발생했습니다."); //알림창에 텍스트를 띄운다
     }
-  } catch {
-    alert("네트워크 오류가 발생했습니다.");
+  } catch { //네트워크 자체가 실패했을 때
+    alert("네트워크 오류가 발생했습니다."); //알림창에 텍스트를 띄운다 
   }
 });
 
 // 로그인 폼 전송
-const loginForm = document.getElementById("loginForm");
-if (loginForm) {
-  const emailEl = document.getElementById("#email");
-  const pwEl = document.getElementById("#password");
-  const errEl = document.getElementById("#loginError");
-  const btnEl = document.getElementById("#loginBtn");
+const loginForm = document.getElementById("loginForm"); //HTML에서 id가 "loginForm"인 요소를 찾아서 그걸 JS 변수 phone에 저장
+if (loginForm) { //loginForm에 값이 들어있다면 
+  const emailEl = document.getElementById("#email"); //HTML에서 id가 "#email"인 요소를 찾아서 그걸 JS 변수 emailEl에 저장
+  const pwEl = document.getElementById("#password"); //HTML에서 id가 "#password"인 요소를 찾아서 그걸 JS 변수 pwEl에 저장
+  const errEl = document.getElementById("#loginError"); //HTML에서 id가 "#loginError"인 요소를 찾아서 그걸 JS 변수 errEl에 저장
+  const btnEl = document.getElementById("#loginBtn"); //HTML에서 id가 "#loginBtn"인 요소를 찾아서 그걸 JS 변수 btnEl에 저장
 
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
