@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LinkON — 홈</title>
+  <link rel="stylesheet" href="../../CSS/Home/home.css">
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <div class="logo"><div class="bulb" aria-hidden="true"></div>LinkON</div>
+      <div class="spacer"></div>
+      <button id="logoutBtn" class="btn">로그아웃</button>
+      <a class="btn primary" href="/HTML/Profile/resume.html">내 이력서</a>
+    </div>
+  </header>
+
+  <main class="wrap grid">
+    <!-- Left column -->
+    <section class="card" id="greetingCard">
+      <div class="hello">
+        <div class="avatar" id="avatar" aria-hidden="true"></div>
+        <div>
+          <div class="name" id="helloName">안녕하세요!</div>
+          <div class="muted" id="helloSub">오늘도 한 걸음, 따뜻하게 ✨</div>
+        </div>
+      </div>
+
+      <h2 style="margin-top:16px">이력서 완성도</h2>
+      <div class="progress" aria-label="이력서 진행률">
+        <div id="resumeBar"></div>
+      </div>
+      <div class="progress-label"><span id="resumeHint" class="muted">필수 항목 0/5</span><span id="resumePct">0%</span></div>
+
+      <div class="quick">
+        <button class="q" id="qResume">✍️ 이력서 채우기</button>
+        <button class="q" id="qGrowth">📒 성장노트 쓰기</button>
+        <button class="q" id="qExplore">🔎 일거리·스펙업 탐색</button>
+      </div>
+    </section>
+
+    <!-- Right column -->
+    <aside class="card">
+      <h2>오늘의 제안</h2>
+      <div id="suggestList" class="list">
+        <div class="empty">맞춤 추천을 불러오는 중…</div>
+      </div>
+    </aside>
+
+    <!-- full width row -->
+    <section class="card" style="grid-column:1/-1">
+      <h2>성장노트 — 최근 활동</h2>
+      <div id="notesList" class="list">
+        <div class="empty">아직 기록이 없어요. 오늘의 작은 한 줄을 남겨볼까요? 😊</div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <input id="noteInput" class="q" style="flex:1;padding:12px;border-radius:12px;border:1px solid #e5e7eb" placeholder="오늘 무엇을 했나요? (예: 알고리즘 2문제, 4km 러닝)" />
+        <button id="noteAdd" class="btn primary">추가</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> LinkON — 서로의 성장을 따뜻하게 잇다
+  </footer>
+  <script src="/JavaScript/app.js"></script>
+</body>
+</html>

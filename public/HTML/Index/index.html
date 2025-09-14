@@ -5,6 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" /> <!--보여지는 화면을 디바이스 크기에 딱 맞게 설명한다-->
   <title>LinkON – 로그인</title> <!--북마크 등을 할 때 사용하는 가장 위에 있는 글자이다-->
   <link rel="stylesheet" href="../../CSS/Index/index.css"> <!--같은 시트에 있는 CSS파일에 연결한다-->
+  <script>
+  // 같은 서버(Express)에서 API 쓰면 빈 문자열로 OK
+  window.API_BASE = "";
+  const API = window.API_BASE || "";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("loginForm");
+    const emailEl = document.getElementById("email");
+    const pwEl = document.getElementById("password");
+    const btnEl = document.getElementById("loginBtn") || document.querySelector('button[type="submit"]');
+
+    // 에러 박스 보장
+    let errEl = document.getElementById("loginError");
+    if (!errEl && form) {
+      errEl = document.createElement("div");
+      errEl.id = "loginError";
+      errEl.style.color = "#ef4444";
+      errEl.style.marginTop = "8px";
+      errEl.style.minHeight = "1.2em";
+      form.appendChild(errEl);
+    }
+
+    if (!form) {
+      console.error("[login] #loginForm not found");
+      return;
+    }
+
+    function setBusy(b){ if (btnEl) btnEl.disabled = !!b; }
+    async function safeJson(res){ try{ return await res.json(); } catch{ return {}; } }
+
+    // 🔥 최종 제출 핸들러 (이것만 남기세요! 과거 임시 guard는 삭제)
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (errEl) errEl.textContent = "";
+      setBusy(true);
+
+      const email = (emailEl?.value || "").trim();
+      const password = pwEl?.value || "";
+
+      if (!email || !password) {
+        if (errEl) errEl.textContent = "이메일과 비밀번호를 입력해 주세요.";
+        setBusy(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API}/api/login`, {
+          method: "POST",
+          headers: { "Content-Type":"application/json" },
+          body: JSON.stringify({ email, password }),
+          credentials: "include"   // 쿠키 포함
+        });
+
+        const data = await safeJson(res);
+        if (res.ok && data.ok) {
+          window.location.href = "/public/HTML/Home/home.html";
+        } else {
+          if (errEl) errEl.textContent = data.error || "로그인 실패";
+        }
+      } catch (err) {
+        console.error(err);
+        if (errEl) errEl.textContent = "네트워크 오류가 발생했어요. 잠시 후 다시 시도해 주세요.";
+      } finally {
+        setBusy(false);
+      }
+    });
+  });
+</script>
+
+
+
 </head>
 
 <body>
@@ -24,8 +95,8 @@
     <section class="auth-card"> <!--auth-card 영역-->
       <div class="card"> <!--그 중에서 카드 영역-->
         <h2 class="logo">LinkON</h2> <!--로고 부분-->
-
-        <form class="form" action="#" method="post"> <!--폼이라는 구역을 정의한다(action은 데이터를 보낼 목적지인데 아직 정의하지 않았다)-->
+                
+        <form id="loginForm" class="form" action="#" method="post"> <!--폼이라는 구역을 정의한다(action은 데이터를 보낼 목적지인데 아직 정의하지 않았다)-->
           <label class="sr-only" for="email">이메일 또는 전화번호</label> <!--입력창에 무엇을 입력해야할지 알려준다-->
           <input id="email" name="email" type="text" placeholder="이메일 또는 전화번호" autocomplete="username" required />
           <!--js로 전송하기 위한 id명, 서버 전송 시 변수명, 안내문, 자동완성 힌트, 비어 있으면 제출 불가로 경고창이 뜨는 것들이 있다-->
