@@ -60,7 +60,7 @@
 
         const data = await safeJson(res);
         if (res.ok && data.ok) {
-          window.location.href = "/public/HTML/Home/home.html";
+          window.location.href = "/HTML/Home/home.html";
         } else {
           if (errEl) errEl.textContent = data.error || "로그인 실패";
         }
